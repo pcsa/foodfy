@@ -105,3 +105,6 @@ dist
 
 public/uploads/*
 !public/uploads/.gitkeep
+
+
+teste.js
