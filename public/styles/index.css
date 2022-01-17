@@ -936,7 +936,7 @@ body.dark .header .header__title {
 }
 
 .header-list__item:not(:last-child) {
-  margin-right: 30px;
+  margin-right: 1.5rem;
 }
 
 .header__link {
@@ -964,7 +964,8 @@ button.header__link {
     margin-top: 8px;
   }
 }
-.header__link.active, .header__link:hover {
+.header__link.active,
+.header__link:hover {
   font-weight: bold;
 }
 
@@ -1004,7 +1005,7 @@ button.header__link {
 
   .header nav {
     flex-grow: 1;
-    margin-left: 122.4px;
+    margin-left: 90px;
   }
 
   .header ul {

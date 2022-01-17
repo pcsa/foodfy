@@ -57,7 +57,7 @@ body.dark .header .header__title {
 }
 
 .header-list__item:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 1.5rem;
 }
 
 .header__link {
@@ -71,13 +71,13 @@ button.header__link {
     border: none;
 }
 
-@media screen and (min-width: 1000px){
+@media screen and (min-width: 1000px) {
     .header__link + form {
         margin-left: $space-md;
     }
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
     .header__link + form {
         margin-top: $space-2xs;
     }
@@ -87,7 +87,8 @@ button.header__link {
     }
 }
 
-.header__link.active, .header__link:hover {
+.header__link.active,
+.header__link:hover {
     font-weight: bold;
 }
 
@@ -96,7 +97,7 @@ button.header__link {
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
     .header__search {
         display: flex;
         flex-direction: column;
@@ -113,7 +114,6 @@ button.header__link {
     min-height: 37px;
 }
 
-
 @media screen and (min-width: 1000px) {
     .header {
         flex-direction: row;
@@ -129,7 +129,7 @@ button.header__link {
 
     .header nav {
         flex-grow: 1;
-        margin-left: 122.4px;
+        margin-left: 90px;
     }
 
     .header ul {

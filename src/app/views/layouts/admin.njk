@@ -34,8 +34,8 @@
             {{__('header.my_account')}}
         </a>
         <form
-            action="/admin/logout?_method=DELETE"
-            method="POST"
+            action="/admin/logout/me"
+            method="GET"
         >
             <button type="submit" class="header__link header__link---admin">{{__('header.logout')}}</button>
         </form>

@@ -20,6 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+Route.resource('/admin/login', 'LoginController').apiOnly().except(['show'])
+
+Route.get('/admin/login/me', 'LoginController.show')

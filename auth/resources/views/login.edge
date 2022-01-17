@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/styles/index.css" type="text/css" rel="stylesheet" />
+    <title>Foodfy | Iniciar sessão</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a class="header__link" href="{{ adminServiceBaseUrl }}">
+          <h1 class="header__title">Foodfy</h1>
+        </a>
+      </div>
+    </header>
+
+    <main class="auth-container">
+      @if(error)
+      <div class="message message---error show">
+        <span>{{error}}</span>
+      </div>
+      @endif
+
+      @if(success)
+      <div class="message message---success show">
+        <span>{{success}}</span>
+      </div>
+      @endif
+
+      <h3 class="title font-md">Iniciar sessão</h3>
+      <form action="/admin/login" method="POST" class="submit-form" data-schema="login">
+        <div class="field-container">
+          <label class="label" for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="field {% if validationErrorMessages.email %}error{% endif %}"
+            value="{{user.email}}"
+            placeholder="Digite seu email"
+            oninput="FormValidator.validate(this)"
+          />
+          @if(validationErrorMessages?.email)
+          <span class="error-message">{{validationErrorMessages.email}}</span>
+          @endif
+        </div>
+
+        <div class="field-container">
+          <label class="label" for="password">Senha</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="field {% if validationErrorMessages.password %}error{% endif %}"
+            value="{{user.password}}"
+            placeholder="Digite sua senha"
+            oninput="FormValidator.validate(this)"
+          />
+          @if(validationErrorMessages?.password)
+          <span class="error-message">{{validationErrorMessages.password}}</span>
+          @endif
+        </div>
+        <div class="row">
+          <a class="link" href="/admin/recover-password">Perdeu a senha?</a>
+          <button type="submit" class="button">Acessar</button>
+        </div>
+      </form>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="/scripts/components.js"></script>
+    <script src="/scripts/handlers.js"></script>
+    <script src="/scripts/upload.js"></script>
+    <script src="/scripts/validators.js"></script>
+  </body>
+</html>

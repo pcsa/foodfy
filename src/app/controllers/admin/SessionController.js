@@ -29,6 +29,10 @@ class SessionController {
     }
 
     logout(req, res) {
+        req.session.user = null;
+        req.session.token = null;
+        res.locals.user = null;
+
         req.session.destroy();
 
         return res.redirect('/admin/login');
