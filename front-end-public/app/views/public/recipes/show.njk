@@ -1,0 +1,11 @@
+{% import "components/recipeDetails.njk" as recipeDetails %}
+{% extends "layouts/public.njk" %}
+
+{% block head %}
+    <title> Foodfy | {{recipe.title}}
+    </title>
+{% endblock %}
+
+{% block content %}
+    {{ recipeDetails.render(recipe, files, true) }}
+{% endblock %}

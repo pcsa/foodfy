@@ -1,0 +1,23 @@
+{% import "components/recipesList.njk" as recipesList %}
+{% import "components/recipesCard.njk" as recipesCard %}
+
+{% extends "layouts/public.njk" %}
+
+{% block head %}
+    <title>Foodfy | Receitas</title>
+{% endblock %}
+
+{% block header %}
+            <form class="header__search" action="/recipes/search">
+                <input type="text" class="field" name="filter" id="filter" value="{{filter}}" placeholder="Buscar uma receita"/>
+                <button class="button button---search" type="submit">Buscar</button>
+            </form>
+{% endblock %}
+
+{% block content %}
+    {% call recipesList.render(recipes) %}
+        {% for recipe in recipes %}
+            {{ recipesCard.renderPrimary(recipe) }}
+        {% endfor %}
+    {% endcall %}
+{% endblock %}

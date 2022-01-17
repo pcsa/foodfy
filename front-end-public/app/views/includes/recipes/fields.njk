@@ -1,0 +1,123 @@
+
+<div class="field-container">
+    <label class="label" for="image">Imagem da receita</label>
+    <div class="field-container__photos js-photos">
+        <div class="photos-upload photos-upload---box">
+            <input
+                class="photos-input"
+                type="file" name="photos"
+                id="photos"
+                multiple
+                accept="image/*"
+                onchange="PhotoUpload.handleFileInput(event)"
+            />
+            <i class="material-icons add">add</i>
+        </div>
+        {% if files %}
+            {% for photo in files %}
+                <div class="photo" id="{{photo.file_id}}">
+                    <i class="material-icons" id="remove-photo" onclick="PhotoUpload.removeOldPhoto(event)">close</i>
+                    <img src="{{photo.path}}"/>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <input type="hidden" name="removed_files" />
+</div>
+
+<div class="field-container">
+    <label class="label" for="title">Título da receita</label>
+    <input
+        name="title"
+        type="text"
+        id="title"
+        class="field {% if validationErrorMessages.title %}error{% endif %}"
+        value="{{recipe.title}}"
+        oninput="FormValidator.validate(this)"
+    />
+    {% if validationErrorMessages.title %}
+        <span class="error-message">{{validationErrorMessages.title}}</span>
+    {% endif %}
+</div>
+
+<div class="field-container">
+    <label class="label" for="author">Chef</label>
+    <select
+        id="author"
+        name="chef_id"
+        class="field field---select  {% if validationErrorMessages.email %}error{% endif %}"
+        value="{{recipe.chef_id}}"
+        oninput="FormValidator.validate(this)"
+    >
+        <option value="" disabled selected>Selecione um chef</option>
+        {% for option in chefOptions %}
+            <option value="{{option.id}}" {% if recipe.chef_id === option.id %} selected {% endif %}>{{option.name}}</option>
+        {% endfor %}
+    </select>
+    {% if validationErrorMessages.chef_id %}
+        <span class="error-message">{{validationErrorMessages.chef_id}}</span>
+    {% endif %}
+</div>
+
+<div class="field-container field-container---ingredients">
+  <div id="ingredients">
+    <label class="label" for="ingredients">Ingredientes</label>
+        {% if recipe.ingredients.length > 0 %}
+            {% for ingredient in recipe.ingredients %}
+                <input
+                    type="text"
+                    class="field"
+                    name="ingredients[]"
+                    value="{{ingredient}}"
+                    oninput="FormValidator.validate(this)"
+                >
+            {% endfor %}
+        {% else %}
+            <input
+                type="text"
+                class="field"
+                name="ingredients[]"
+                oninput="FormValidator.validate(this)"
+            />
+        {% endif %}
+  </div>
+  <button class="field-container__action js-add-ingredient" type="button">Adicionar novo ingrediente</button>
+   {% if validationErrorMessages.ingredients %}
+        <span class="error-message">{{validationErrorMessages.ingredients}}</span>
+   {% endif %}
+</div>
+
+<div class="field-container field-container---preparations">
+    <div id="preparations">
+        <label class="label" for="preparations">Modo de preparo</label>
+        {% if recipe.preparations.length > 0 %}
+            {% for preparation in recipe.preparations %}
+                <input
+                    type="text"
+                    class="field"
+                    name="preparations[]"
+                    value="{{preparation}}"
+                    oninput="FormValidator.validate(this)"
+                />
+            {% endfor %}
+        {% else %}
+            <input
+                type="text"
+                class="field"
+                name="preparations[]"
+                oninput="FormValidator.validate(this)"
+            />
+        {% endif %}
+     </div>
+    <button class="field-container__action js-add-preparation" type="button">Adicionar novo passo</button>
+    {% if validationErrorMessages.preparations %}
+        <span class="error-message">{{validationErrorMessages.preparations}}</span>
+    {% endif %}
+</div>
+
+<div class="field-container">
+    <label class="label" for="information">Informações adicionais</label>
+    <textarea name="information" id="information" class="field" rows="8">{{recipe.information}}</textarea>
+</div>
+
+<input type="hidden" name="user_id" value="{{user.id}}"/>
