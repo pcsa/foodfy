@@ -9,21 +9,15 @@ class LoadRecipesService {
     async execute() {
         const { filters, user } = this;
 
-        console.log('dfogkd');
-
         if (filters && filters.search) {
             const recipes = await this.loadSearchedRecipes(filters.search);
             return recipes;
         }
 
-        console.log('aaaaa');
-
         if (filters && filters.recipe_id) {
             const chef = await this.loadOneRecipe(filters.recipe_id);
             return chef;
         }
-
-        console.log('bbb');
 
         const chefs = this.loadAllRecipes(user);
         return chefs;
