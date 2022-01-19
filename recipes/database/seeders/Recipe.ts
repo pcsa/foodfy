@@ -30,7 +30,7 @@ export default class RecipeSeeder extends BaseSeeder {
       },
       {
         title: 'Pizza 4 estações',
-        ingredients: `{${[
+        ingredients: [
           '1 xícara (chá) de leite',
           '1 ovo',
           '1 colher (chá) de sal',
@@ -43,51 +43,51 @@ export default class RecipeSeeder extends BaseSeeder {
           '2 tomates fatiados',
           'azeitona picada',
           'orégano a gosto',
-        ]}}`,
-        preparations: `{${[
+        ].join('|'),
+        preparations: [
           'No liquidificador bata o leite, o ovo, o sal, o açúcar, a margarina, a farinha de trigo e o fermento em pó até que tudo esteja encorporado.',
           'Despeje a massa em uma assadeira para pizza untada com margarina e leve ao forno preaquecido por 20 minutos.',
           'Retire do forno e despeje o molho de tomate.',
           'Cubra a massa com mussarela ralada, tomate e orégano a gosto.',
           'Leve novamente ao forno até derreter a mussarela.',
-        ]}}`,
+        ].join('|'),
         information: 'Pizza de liquidificador é uma receita deliciosa e supersimples de preparar.',
         userId: 1,
         chefId: 1,
       },
       {
         title: 'Asinhas de frango ao barbecue',
-        ingredients: `{${[
+        ingredients: [
           '12 encontros de asinha de galinha, temperados a gosto',
           '2 colheres de sopa de farinha de trigo',
           '1/2 xícara (chá) de óleo',
           '1 xícara de molho barbecue',
-        ]}}`,
-        preparations: `{${[
+        ].join('|'),
+        preparations: [
           'Em uma tigela coloque o encontro de asinha de galinha e polvilhe a farinha de trigo e misture com as mãos.',
           'Em uma frigideira ou assador coloque o óleo quando estiver quente frite até ficarem douradas.',
           'Para servir fica bonito com salada, ou abuse da criatividade.',
-        ]}}`,
+        ].join('|'),
         information: '',
         userId: 1,
         chefId: 1,
       },
       {
         title: 'Lasanha mac n cheese',
-        ingredients: `{${[
+        ingredients: [
           'massa pronta de lasanha',
           '400 g de presunto',
           '400 g de mussarela ralada',
           '2 copos de requeijão',
           '150 g de mussarela para gratinar',
-        ]}}`,
-        preparations: `{${[
+        ].join('|'),
+        preparations: [
           'Em uma panela, coloque a manteiga para derreter.',
           'Acrescente a farinha de trigo e misture bem com auxílio de um fouet.',
           'Adicione o leite e misture até formar um creme homogêneo.',
           'Tempere com sal, pimenta e noz-moscada a gosto.',
           'Desligue o fogo e acrescente o creme de leite; misture bem e reserve.',
-        ]}}`,
+        ].join('|'),
         information: 'Recheie a lasanha com o que preferir.',
         chefId: 1,
         userId: 1,

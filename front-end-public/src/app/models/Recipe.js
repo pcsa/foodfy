@@ -90,15 +90,12 @@ class Recipe extends Base {
         return recipesResponse.data;
     }
 
-    // TODO
     async chefOptions() {
-        // const query = `
-        //         SELECT * FROM chefs ORDER BY name ASC
-        //     `;
-        // const results = await db.query(query);
-        // return results.rows;
-
-        return [];
+        const query = `
+                SELECT * FROM chefs ORDER BY name ASC
+            `;
+        const results = await db.query(query);
+        return results.rows;
     }
 
     async files(id) {
@@ -111,8 +108,6 @@ class Recipe extends Base {
         // const results = await db.query(query, [id]);
 
         const filesResponse = await recipesAPI.get(`/recipes/${id}/files`);
-
-        console.log(`files ${filesResponse.data}`);
 
         return filesResponse.data;
     }

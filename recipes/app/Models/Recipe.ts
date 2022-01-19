@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { afterFetch, BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { afterFetch, afterFind, BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Recipe extends BaseModel {
   @column({ isPrimary: true })
@@ -31,15 +31,17 @@ export default class Recipe extends BaseModel {
 
   @afterFetch()
   public static ingredients(recipes: Recipe[]) {
-    recipes.map((r) => {
-      r.merge({ ingredients: r.ingredients.split('|') })
-    })
+    Recipe.convertStringToArray(recipes)
   }
 
-  @afterFetch()
-  public static preparations(recipes: Recipe[]) {
+  @afterFind()
+  public static preparations(recipe: Recipe) {
+    Recipe.convertStringToArray([recipe])
+  }
+
+  public static convertStringToArray(recipes: Recipe[]) {
     recipes.map((r) => {
-      r.merge({ preparations: r.preparations.split('|') })
+      r.merge({ ingredients: r.ingredients.split('|'), preparations: r.preparations.split('|') })
     })
   }
 }
