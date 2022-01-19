@@ -21,3 +21,5 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.resource('recipes', 'RecipesController').apiOnly()
+
+Route.resource('recipes/:recipes_id/files', 'FilesController').apiOnly()
