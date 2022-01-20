@@ -3,6 +3,7 @@ const db = require('../../config/database');
 const File = require('./File');
 const Base = require('./Base');
 const { recipesAPI } = require('../services/recipes-service');
+const { chefsAPI } = require('../services/chef-service');
 
 class Recipe extends Base {
     constructor() {
@@ -21,7 +22,12 @@ class Recipe extends Base {
 
         // const results = await db.query(query, [id]);
 
-        const recipesResponse = await recipesAPI.get(`/recipes/${id}`);
+        const recipesResponse = await recipesAPI.get(`/recipes/${id}`, {
+            params: {
+                chefName: true,
+                photo: true,
+            },
+        });
 
         // return results.rows[0];
 
@@ -39,7 +45,12 @@ class Recipe extends Base {
 
         // const results = await db.query(query);
 
-        const recipesResponse = await recipesAPI.get('/recipes');
+        const recipesResponse = await recipesAPI.get('/recipes', {
+            params: {
+                chefName: true,
+                photo: true,
+            },
+        });
 
         return recipesResponse.data;
 
@@ -59,6 +70,8 @@ class Recipe extends Base {
         const recipesResponse = await recipesAPI.get('/recipes', {
             params: {
                 userId,
+                chefName: true,
+                photo: true,
             },
         });
 
@@ -81,6 +94,8 @@ class Recipe extends Base {
         const recipesResponse = await recipesAPI.get('/recipes', {
             params: {
                 title: values.filter,
+                chefName: true,
+                photo: true,
             },
         });
 
@@ -91,11 +106,17 @@ class Recipe extends Base {
     }
 
     async chefOptions() {
-        const query = `
-                SELECT * FROM chefs ORDER BY name ASC
-            `;
-        const results = await db.query(query);
-        return results.rows;
+        const chefsResposne = await chefsAPI.get('/chefs', {
+            params: { orderByName: 'asc' },
+        });
+
+        // const query = `
+        //         SELECT * FROM chefs ORDER BY name ASC
+        //     `;
+        // const results = await db.query(query);
+        // return results.rows;
+
+        return chefsResposne.data;
     }
 
     async files(id) {

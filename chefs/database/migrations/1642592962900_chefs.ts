@@ -7,6 +7,7 @@ export default class Chefs extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.text('name')
+      table.integer('file_id').references('files.id')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

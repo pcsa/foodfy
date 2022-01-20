@@ -1,5 +1,6 @@
 const db = require('../../config/database');
 const Base = require('./Base');
+const { chefsAPI } = require('../services/chef-service');
 
 class Chef extends Base {
     constructor() {
@@ -7,36 +8,36 @@ class Chef extends Base {
     }
 
     async findAll() {
-        const query = `
-                SELECT chefs.*, count(recipes) as total_recipes, files.path as avatar
-                FROM chefs
-                LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-                LEFT JOIN files ON (files.id = chefs.file_id)
-                GROUP BY chefs.id, files.id
-            `;
+        // const query = `
+        //         SELECT chefs.*, count(recipes) as total_recipes, files.path as avatar
+        //         FROM chefs
+        //         LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+        //         LEFT JOIN files ON (files.id = chefs.file_id)
+        //         GROUP BY chefs.id, files.id
+        //     `;
 
-        const results = await db.query(query, null);
+        // const results = await db.query(query, null);
 
-        return results.rows;
+        // return results.rows;
+
+        const chefResponse = await chefsAPI.get('/chefs', {
+            params: {
+                avatar: true,
+                totalRecipes: true,
+            },
+        });
+
+        return chefResponse.data;
     }
 
     async find(id) {
-        const query = `
-                SELECT chefs.*, count(recipes) as total_recipes,
-                (
-                    SELECT files.path
-                    FROM chefs
-                    RIGHT JOIN files ON (files.id = chefs.file_id)
-                    WHERE chefs.id = $1
-                ) AS avatar
-                FROM chefs
-                LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-                WHERE chefs.id = $1
-                GROUP BY chefs.id
-            `;
-
-        const results = await db.query(query, [id]);
-        return results.rows[0];
+        const chefResponse = await chefsAPI.get(`/chefs/${id}`, {
+            params: {
+                avatar: true,
+                totalRecipes: true,
+            },
+        });
+        return chefResponse.data;
     }
 
     async chefRecipes(id) {

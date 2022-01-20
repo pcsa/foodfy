@@ -3,7 +3,7 @@ import Recipe from 'App/Models/Recipe'
 
 export default class RecipesController {
   public async index({ request }: HttpContextContract) {
-    const { userId, title } = request.all()
+    const { userId, title, chefId, chefName, photo } = request.all()
 
     const query = Recipe.query()
 
@@ -15,15 +15,29 @@ export default class RecipesController {
       query.where('title', 'like', `%${title}%`)
     }
 
-    return query
+    if (chefId) {
+      query.where('chefId', chefId)
+    }
+
+    const recipes = await query
+
+    if (chefName) await Recipe.addChefNameProp(recipes)
+
+    if (photo) await Recipe.addPhotoProp(recipes)
+
+    return recipes
   }
 
   public async store({}: HttpContextContract) {}
 
   public async show({ request }: HttpContextContract) {
-    const { id } = request.params()
+    const { id, chefName, photo } = request.params()
 
     const recipe = await Recipe.find(id)
+
+    if (chefName) await Recipe.addChefNameProp([recipe!])
+
+    if (photo) await Recipe.addPhotoProp([recipe!])
 
     return recipe
   }

@@ -7,9 +7,7 @@ const LoadChefsService = require('../../services/LoadChefsService');
 class ChefsController {
     async index(req, res) {
         try {
-            // const chefs = await new LoadChefsService().execute();
-
-            const chefs = [];
+            const chefs = await new LoadChefsService().execute();
 
             return res.render('public/chefs/index', { chefs });
         } catch (err) {

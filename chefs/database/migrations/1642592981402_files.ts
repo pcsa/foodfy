@@ -9,7 +9,6 @@ export default class Files extends BaseSchema {
 
       table.text('name')
       table.text('path')
-      table.integer('chef_id').references('chefs.id')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

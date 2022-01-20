@@ -11,9 +11,6 @@ export default class File extends BaseModel {
   @column()
   public path: string
 
-  @column()
-  public chefId: number
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
