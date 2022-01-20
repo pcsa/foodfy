@@ -1,0 +1,44 @@
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Foodfy | Editar Usuário </title>
+{% endblock %}
+
+{% block content %}
+    <form
+        id="deleteForm"
+        style="display: none;"
+        action="/admin/users/{{registedUser.id}}?_method=DELETE"
+        method="POST"
+        data-schema="users"
+        >
+    </form>
+    <form
+        id="updateForm"
+        action="/admin/users/{{registedUser.id}}?_method=PUT"
+        method="POST"
+        class="submit-form"
+        data-schema="users"
+    >
+        <section class="users container">
+            <header class="section-header">
+                <h1 class="title font-md">Atualizar Usuário</h1>
+
+                <div class="actions-container">
+                    <input
+                        class="button button--delete font-xs"
+                        onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
+                        type="submit"
+                        form="deleteForm"
+                        value="Deletar"
+                    />
+                    <input class="button font-xs" type="submit" form="updateForm" value="Salvar" />
+                </div>
+            </header>
+
+            <section class="users__form container">
+                {% include "includes/users/fields.njk" %}
+            </section>
+        </section>
+    </form>
+{% endblock %}

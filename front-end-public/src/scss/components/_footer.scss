@@ -1,0 +1,24 @@
+.footer {
+    background-color: $gray-light;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 62px;
+    display: flex;
+}
+
+body.dark {
+    .footer {
+        background-color: var(--bg-color);
+    }
+
+    .footer__text {
+        color: $gray-light;
+    }
+}
+
+.footer__text {
+    color: $gray;
+    font-size: 14px;
+    margin: auto;
+}

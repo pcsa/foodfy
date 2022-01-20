@@ -1,0 +1,51 @@
+
+.details__image---big {
+    height: 120px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.details__image---rounded {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.details__info {
+    text-align: center;
+}
+
+.details__title {
+    margin-top: $space-sm;
+}
+
+.details__subtitle {
+    font-size: $font-md;
+    color: $gray;
+    font-weight: 400;
+    margin-bottom: $space-sm;
+}
+
+@media screen and (min-width: 1000px) {
+    .details__image---big {
+        min-height: 280px;
+        min-width: 940px;
+    }
+
+    .details__title {
+        margin-top: $space-lg;
+    }
+
+    .details__author {
+        margin-bottom: $space-lg;
+    }
+
+    .details__info,
+    .recipe_ingredients,
+    .recipe_preparation {
+        padding: 0;
+    }
+}

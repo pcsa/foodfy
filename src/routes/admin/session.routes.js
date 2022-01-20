@@ -8,14 +8,23 @@ const SessionValidator = require('../../app/validators/SessionValidator');
 const guestMiddleware = require('../../app/middlewares/guest');
 
 routes
-    .get('/login', guestMiddleware, SessionController.loginForm)
+    .get(
+        '/login',
+        guestMiddleware,
+        // SessionController.loginForm
+        (req, res) => {
+            res.redirect(`${process.env.AUTH_SERVICE_BASE_URL}/admin/login`);
+        }
+    )
     .post(
         '/login',
-        [SessionValidator.loginFields, SessionValidator.login],
-        SessionController.login
+        (req, res) => {
+            res.redirect(`${process.env.AUTH_SERVICE_BASE_URL}/admin/login`);
+        }
+        // [SessionValidator.loginFields, SessionValidator.login],
+        // SessionController.login
     )
-    .delete('/logout', SessionController.logout)
-
+    .get('/logout/me', SessionController.logout)
     .get(
         '/recover-password',
         guestMiddleware,

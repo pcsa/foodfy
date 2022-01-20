@@ -1,0 +1,46 @@
+<div class="field-container">
+    <label class="label" for="name">{{__('profile.name')}}</label>
+    <input
+        type="text"
+        name="name"
+        id="name"
+        class="field {% if validationErrorMessages.name %}error{% endif %}"
+        value="{{user.name}}"
+        placeholder="{{__('profile.type_your_full_name')}}"
+        oninput="FormValidator.validate(this)"
+    />
+    {% if validationErrorMessages.name %}
+        <span class="error-message">{{validationErrorMessages.name}}</span>
+    {% endif %}
+</div>
+
+<div class="field-container">
+    <label class="label" for="email">Email</label>
+    <input
+        type="email"
+        name="email"
+        id="email"
+        class="field {% if validationErrorMessages.email %}error{% endif %}"
+        value="{{user.email}}"
+        placeholder="{{__('profile.type_a_email')}}"
+        oninput="FormValidator.validate(this)"
+    />
+    {% if validationErrorMessages.email %}
+        <span class="error-message">{{validationErrorMessages.email}}</span>
+    {% endif %}
+</div>
+
+<div class="field-container">
+    <label class="label" for="email">{{__("profile.password")}}</label>
+    <input
+        type="password"
+        name="password"
+        id="password"
+        class="field {% if validationErrorMessages.password %}error{% endif %}"
+        placeholder="{{__('profile.type_a_password')}}"
+        oninput="FormValidator.validate(this)"
+    />
+    {% if validationErrorMessages.password %}
+        <span class="error-message">{{validationErrorMessages.password}}</span>
+    {% endif %}
+</div>

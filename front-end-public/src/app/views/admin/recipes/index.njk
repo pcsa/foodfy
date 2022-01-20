@@ -1,0 +1,22 @@
+{% import "components/recipesCard.njk" as recipesCard %}
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Foodfy | {{__("Manage")}} {{__n("recipes", 2)}} </title>
+{% endblock %}
+
+{% block content %}
+    <section class="recipes recipes---admin container">
+        <header class="section-header">
+            <h1 class="title font-md">{{__("Manage")}} {{__n("recipes", 2)}}<h1/>
+            {% if user.is_admin %}
+                <a class="button" href="/admin/recipes/create">{{__("buttons.create")}} {{__n("recipes", 1)}}</a>
+            {% endif %}
+        </header>
+        <div class="grid grid--two-columns">
+            {% for recipe in recipes %}
+                {{recipesCard.renderSecondary(recipe)}}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
