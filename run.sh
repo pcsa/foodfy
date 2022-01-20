@@ -20,7 +20,7 @@ cd ..
 cd front-end-public
 yarn
 yarn build:sass > sass.log 2>&1 &
-yarn dev > front-end-public.log 2>&1 &
+yarn nodemon > front-end-public.log 2>&1 &
 cd ..
 
 # /
