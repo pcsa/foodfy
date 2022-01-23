@@ -23,6 +23,14 @@ yarn build:sass > sass.log 2>&1 &
 yarn nodemon > front-end-public.log 2>&1 &
 cd ..
 
+
+# /front-end-client
+cd front-end-client
+yarn
+yarn build:sass > sass.log 2>&1 &
+yarn nodemon > front-end-public.log 2>&1 &
+cd ..
+
 # /
 yarn
 yarn build:sass > sass.log 2>&1 &

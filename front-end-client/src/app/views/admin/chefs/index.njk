@@ -1,0 +1,23 @@
+{% import "components/chefsList.njk" as chefsList %}
+{% import "components/chefsCard.njk" as chefsCard %}
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title>Foodfy | {{__("Manage")}} chefs</title>
+{% endblock %}
+
+{% block content %}
+<section class="chefs container">
+    <header class="section-header">
+        <h1 class="title font-md">{{__("Manage")}} chefs<h1/>
+        {% if user.is_admin %}
+            <a class="button" href="/admin/chefs/create">{{__("buttons.create")}} chef</a>
+        {% endif %}
+    </header>
+    {% call chefsList.render() %}
+        {% for chef in chefs %}
+            {{chefsCard.render(chef, false, true)}}
+        {% endfor %}
+    {% endcall %}
+</section>
+{% endblock %}

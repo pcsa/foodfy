@@ -46,10 +46,15 @@ export default class LoginController {
 
       const token = await auth.use('api').attempt(requestedUser.email, requestedUser.password)
 
+      let baseUrl = ''
+      if (existingUser.isAdmin) {
+        baseUrl = Env.get('ADMIN_SERVICE_BASE_URL')
+      } else {
+        baseUrl = Env.get('CLIENT_SERVICE_BASE_URL')
+      }
+
       return response.redirect(
-        `${Env.get(
-          'ADMIN_SERVICE_BASE_URL'
-        )}/admin/profile?success=Usuário autenticado com sucesso&token=${token.token}`
+        `${baseUrl}/admin/profile?success=Usuário autenticado com sucesso&token=${token.token}`
       )
     } catch (err) {
       return view.render('login', {

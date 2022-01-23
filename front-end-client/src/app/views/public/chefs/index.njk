@@ -1,0 +1,17 @@
+{% import "components/chefsList.njk" as chefsList %}
+{% import "components/chefsCard.njk" as chefsCard %}
+{% extends "layouts/public.njk" %}
+
+{% block head %}
+    <title>Foodfy | Chefs </title>
+{% endblock %}
+
+{% block content %}
+    <section class="chefs container">
+        {% call chefsList.render() %}
+            {% for chef in chefs %}
+                {{chefsCard.render(chef, true, false)}}
+            {% endfor %}
+        {% endcall %}
+    </section>
+{% endblock %}

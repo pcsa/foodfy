@@ -25,4 +25,6 @@ export default Env.rules({
   NODE_ENV: Env.schema.enum(['development', 'production', 'testing'] as const),
 
   ADMIN_SERVICE_BASE_URL: Env.schema.string(),
+  CLIENT_SERVICE_BASE_URL: Env.schema.string(),
+  PUBLIC_SERVICE_BASE_URL: Env.schema.string(),
 })

@@ -1,0 +1,19 @@
+{% import "components/recipeDetails.njk" as recipeDetails %}
+{% extends "layouts/admin.njk" %}
+
+{% block head %}
+    <title> Foodfy | {{recipe.title}}</title>
+{% endblock %}
+
+{% block content %}
+    {% call recipeDetails.render(recipe, files, false, 'recipes---admin container') %}
+        <div class="row">
+            <h1 class="title font-md">{{__("recipe")}}: {{recipe.title}}</h1>
+            {% if user.is_admin %}
+                <div class="actions-container">
+                    <a class="button" href="/admin/recipes/{{recipe.id}}/edit">{{__("buttons.edit")}} {{__n("recipes", 1)}}</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endcall %}
+{% endblock %}

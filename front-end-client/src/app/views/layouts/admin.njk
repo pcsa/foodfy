@@ -1,0 +1,50 @@
+{% import "components/header.njk" as header %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/favicon.ico">
+    {% include "includes/head.njk" %}
+    {% block head %}
+        <title>Foodfy | Gerencia suas receitas</title>
+    {% endblock %}
+</head>
+<body>
+    {% call header.renderMain([
+        {
+            title: __('header.recipes'),
+            path: '/admin/recipes'
+        },
+        {
+            title: __('header.chefs'),
+            path: '/admin/chefs'
+        },
+        {
+            title: __('header.users'),
+            path: '/admin/users'
+        }
+    ], null, "/admin", "header---admin")
+    %}
+        <a
+            class="header__link header__link---account header__link---admin js-header__link"
+            href="/admin/profile"
+        >
+            {{__('header.my_account')}}
+        </a>
+        <form
+            action="/admin/logout/me"
+            method="GET"
+        >
+            <button type="submit" class="header__link header__link---admin">{{__('header.logout')}}</button>
+        </form>
+    {% endcall %}
+
+    {% include "includes/messages.njk" %}
+    {% block content %}
+    {% endblock %}
+
+    {% include "includes/scripts.njk" %}
+</body>
+</html>

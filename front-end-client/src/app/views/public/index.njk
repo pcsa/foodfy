@@ -1,0 +1,34 @@
+{% import "components/recipesList.njk" as recipesList %}
+{% import "components/recipesCard.njk" as recipesCard %}
+{% extends "layouts/public.njk" %}
+
+{% block head %}
+    <title>Foodfy | {{__("head.title")}}</title>
+{% endblock %}
+
+{% block header %}
+            <form class="header__search" action="/recipes/search">
+                <input type="text" class="field" name="filter" id="filter" {% if filter %} value="{{filter}}" {% endif %} placeholder="Buscar uma receita"/>
+                <button class="button button---search" type="submit">Buscar</button>
+            </form>
+{% endblock %}
+
+{% block content %}
+    <section class="info container">
+        <div class="box">
+            <div class="text">
+                <h2 class="title box__title font-lg">{{__("the_best_recipes")}}</h2>
+                <p class="box__description">
+                    {{__("foodfy_description")}}
+                </p>
+            </div>
+            <img class="chef" src="/assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
+        </div>
+    </section>
+
+    {% call recipesList.render(recipes, __("most_accessed")) %}
+        {% for recipe in recipes %}
+            {{ recipesCard.renderPrimary(recipe) }}
+        {% endfor %}
+    {% endcall %}
+{% endblock %}
