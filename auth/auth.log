@@ -1,0 +1,18 @@
+yarn run v1.22.10
+$ node ace serve --watch
+[ info ]  building project...
+[ info ]  starting http server...
+[1643142430083] [32mINFO[39m (auth/5537 on fedora): [36mstarted server on 0.0.0.0:3334[39m
+[ encore ] Running webpack-dev-server ...
+[ info ]  watching file system for changes
+╭────────────────────────────────────────────────────────╮
+│                                                        │
+│    Server address: http://127.0.0.1:3334               │
+│    Watching filesystem for changes: YES                │
+│    Encore server address: http://localhost:8080        │
+│                                                        │
+╰────────────────────────────────────────────────────────╯
+UPDATE: public/assets/manifest.json
+UPDATE: public/assets/entrypoints.json
+[ encore ] [42m[30m DONE [39m[49m [32mCompiled successfully in 888ms[39m[90m5:27:11 PM[39m
+[ encore ] webpack compiled [1m[32msuccessfully[39m[22m
